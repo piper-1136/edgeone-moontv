@@ -1,7 +1,7 @@
 {
   "douban_proxy": "https://douban.uieee.com/fetch?url=",
   "downstream_proxy": "https://douban.uieee.com/fetch?url=",
-  "image_proxy": "https://douban.uieee.com/image?url="
+  "image_proxy": "https://douban.uieee.com/image?url=",
   "homepage_password": "112233",
   "cache_time": 7200,
   "api_site": {
