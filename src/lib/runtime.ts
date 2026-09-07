@@ -2,7 +2,10 @@
 /* eslint-disable */
 
 export const config = {
-  "homepage_password": "123...qqqA",
+  "douban_proxy": "https://db.o-o.men/fetch?url=",
+  "downstream_proxy": "",
+  "image_proxy": "https://image.baidu.com/search/down?url=",
+  "homepage_password": "112233",
   "cache_time": 7200,
   "api_site": {
     "dyttzy": {
