@@ -14,6 +14,9 @@ export interface ApiSite {
 
 interface ConfigFileStruct {
   cache_time?: number;
+  douban_proxy?: string;
+  downstream_proxy?: string;
+  image_proxy?: string;
   api_site: {
     [key: string]: ApiSite;
   };
@@ -199,8 +202,10 @@ async function initConfig() {
             SearchDownstreamMaxPage:
               Number(process.env.NEXT_PUBLIC_SEARCH_MAX_PAGE) || 5,
             SiteInterfaceCacheTime: fileConfig.cache_time || 7200,
-            ImageProxy: process.env.NEXT_PUBLIC_IMAGE_PROXY || '',
-            DoubanProxy: process.env.NEXT_PUBLIC_DOUBAN_PROXY || '',
+            ImageProxy:
+              process.env.NEXT_PUBLIC_IMAGE_PROXY || fileConfig.image_proxy || '',
+            DoubanProxy:
+              process.env.NEXT_PUBLIC_DOUBAN_PROXY || fileConfig.douban_proxy || '',
             DisableYellowFilter:
               process.env.NEXT_PUBLIC_DISABLE_YELLOW_FILTER === 'true',
           },
@@ -247,8 +252,8 @@ async function initConfig() {
         SearchDownstreamMaxPage:
           Number(process.env.NEXT_PUBLIC_SEARCH_MAX_PAGE) || 5,
         SiteInterfaceCacheTime: fileConfig.cache_time || 7200,
-        ImageProxy: process.env.NEXT_PUBLIC_IMAGE_PROXY || '',
-        DoubanProxy: process.env.NEXT_PUBLIC_DOUBAN_PROXY || '',
+        ImageProxy: process.env.NEXT_PUBLIC_IMAGE_PROXY || fileConfig.image_proxy || '',
+        DoubanProxy: process.env.NEXT_PUBLIC_DOUBAN_PROXY || fileConfig.douban_proxy || '',
         DisableYellowFilter:
           process.env.NEXT_PUBLIC_DISABLE_YELLOW_FILTER === 'true',
       },
@@ -302,9 +307,9 @@ export async function getConfig(): Promise<AdminConfig> {
     adminConfig.UserConfig.AllowRegister =
       process.env.NEXT_PUBLIC_ENABLE_REGISTER === 'true';
     adminConfig.SiteConfig.ImageProxy =
-      process.env.NEXT_PUBLIC_IMAGE_PROXY || '';
+      process.env.NEXT_PUBLIC_IMAGE_PROXY || fileConfig.image_proxy || '';
     adminConfig.SiteConfig.DoubanProxy =
-      process.env.NEXT_PUBLIC_DOUBAN_PROXY || '';
+      process.env.NEXT_PUBLIC_DOUBAN_PROXY || fileConfig.douban_proxy || '';
     adminConfig.SiteConfig.DisableYellowFilter =
       process.env.NEXT_PUBLIC_DISABLE_YELLOW_FILTER === 'true';
 
@@ -436,8 +441,8 @@ export async function resetConfig() {
       SearchDownstreamMaxPage:
         Number(process.env.NEXT_PUBLIC_SEARCH_MAX_PAGE) || 5,
       SiteInterfaceCacheTime: fileConfig.cache_time || 7200,
-      ImageProxy: process.env.NEXT_PUBLIC_IMAGE_PROXY || '',
-      DoubanProxy: process.env.NEXT_PUBLIC_DOUBAN_PROXY || '',
+      ImageProxy: process.env.NEXT_PUBLIC_IMAGE_PROXY || fileConfig.image_proxy || '',
+      DoubanProxy: process.env.NEXT_PUBLIC_DOUBAN_PROXY || fileConfig.douban_proxy || '',
       DisableYellowFilter:
         process.env.NEXT_PUBLIC_DISABLE_YELLOW_FILTER === 'true',
     },
